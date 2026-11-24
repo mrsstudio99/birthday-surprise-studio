@@ -4,413 +4,625 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Birthday Surprise ❤️</title>
+<title>Birthday Surprise Studio</title>
+
 <style>
-*{box-sizing:border-box}
-body{
- margin:0;min-height:100vh;text-align:center;
- font-family:Georgia,serif;color:white;
- background:radial-gradient(circle at top,#68152e,#200611 75%);
- padding:20px 12px 50px;overflow-x:hidden
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-h1{color:#ffd777;text-shadow:0 0 15px #ffbd45}
-h2{color:#ffda8a}
-p{line-height:1.6}
-.section{
- max-width:600px;margin:22px auto;padding:18px;
- background:#ffffff12;border:1px solid #ffffff30;
- border-radius:18px
+
+body {
+    font-family: Georgia, serif;
+    background: #41000f;
+    color: #fff2df;
+    min-height: 100vh;
+    padding: 22px 14px;
+    background-image:
+    radial-gradient(circle at 50% 20%,#a90030,transparent 55%),
+    linear-gradient(140deg,#33000b,#790018,#3c000d);
 }
-button,.upload{
- border:0;border-radius:25px;padding:11px 17px;
- margin:6px;background:#ffd477;color:#39101b;
- font-weight:bold;cursor:pointer
+
+.container {
+    max-width: 650px;
+    margin: auto;
 }
-.cake{font-size:75px;animation:bounce 2s infinite}
-@keyframes bounce{
- 50%{transform:translateY(-10px)}
+
+header {
+    text-align: center;
+    padding: 35px 10px;
 }
-.balloons{
- display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
- gap:8px;align-items:center;margin:30px auto;
+
+header h1 {
+    font-size: clamp(30px,7vw,43px);
+    color: #ffd477;
+    text-shadow: 0 0 15px #ffb52e;
+    margin-bottom: 15px;
 }
-.slot{
- min-width:0;min-height:145px;
- display:flex;align-items:center;justify-content:center;
- position:relative;
+
+header p {
+    color: #ffe1d5;
+    font-size: 15px;
+    line-height: 1.8;
 }
-.balloon{
- width:100%;max-width:65px;height:85px;
- border-radius:50% 50% 45% 45%;
- display:flex;align-items:center;justify-content:center;
- font-size:23px;cursor:pointer;position:relative;
- animation:float 2s infinite ease-in-out;
- box-shadow:inset -8px -8px 15px #0003;
+
+.music-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
 }
-.balloon:after{
- content:"";position:absolute;bottom:-12px;
- border-left:5px solid transparent;
- border-right:5px solid transparent;
- border-top:12px solid currentColor
+
+.section {
+    background: rgba(255,255,255,.045);
+    border: 1px solid rgba(255,213,135,.35);
+    border-radius: 23px;
+    padding: 23px 19px;
+    margin-bottom: 23px;
+    box-shadow: 0 8px 30px rgba(0,0,0,.18);
 }
-@keyframes float{
- 50%{transform:translateY(-10px)}
+
+.section h2 {
+    color: #ffd477;
+    font-size: 23px;
+    margin-bottom: 18px;
 }
-.balloon.popping{
- animation:popEffect .45s forwards;
- pointer-events:none
+
+.description {
+    color: #f5d4ca;
+    line-height: 1.7;
+    margin-bottom: 18px;
+    font-size: 14px;
 }
-@keyframes popEffect{
- 0%{transform:scale(1);opacity:1}
- 45%{transform:scale(1.3);opacity:.9}
- 100%{transform:scale(0);opacity:0}
+
+label {
+    display: block;
+    margin: 16px 0 9px;
+    font-size: 15px;
+    color: #ffe5c4;
 }
-.message{
- display:none;width:100%;padding:9px 5px;
- border-radius:13px;
- background:linear-gradient(145deg,#5c1933,#321020);
- border:1px solid #ffdb82;
- box-shadow:0 0 15px #ffca60, inset 0 0 12px #ffcf7022;
- font-size:12px;
- animation:messageReveal .85s ease forwards;
+
+input, textarea {
+    width: 100%;
+    padding: 16px;
+    border-radius: 15px;
+    border: 1px solid #f6d3a3;
+    background: #fff7ed;
+    color: #42101c;
+    font-size: 15px;
+    outline: none;
+    font-family: Arial,sans-serif;
 }
-.message h3{
- color:#ffe19a;font-size:14px;margin:4px 0 7px;
- text-shadow:0 0 8px #ffc65b
+
+textarea {
+    min-height: 115px;
+    resize: vertical;
+    line-height: 1.6;
 }
-.message p{font-size:11px;margin:0;line-height:1.45}
-@keyframes messageReveal{
- 0%{opacity:0;transform:scale(.2) rotate(-8deg)}
- 60%{opacity:1;transform:scale(1.12) rotate(2deg)}
- 100%{opacity:1;transform:scale(1) rotate(0)}
+
+input:focus,textarea:focus {
+    border: 2px solid #ffd477;
+    box-shadow: 0 0 10px #e9a83b;
 }
-.sparkle{
- position:absolute;pointer-events:none;
- animation:sparkle .8s forwards;
- font-size:18px;z-index:5
+
+input[type="file"] {
+    padding: 12px;
+    font-size: 13px;
 }
-@keyframes sparkle{
- 0%{opacity:1;transform:scale(.3) translateY(0)}
- 100%{opacity:0;transform:scale(1.8) translateY(-35px)}
+
+.balloon-box {
+    border: 1px solid rgba(255,215,130,.3);
+    padding: 16px;
+    border-radius: 16px;
+    margin-bottom: 17px;
+    background: rgba(90,0,20,.25);
 }
-#grand,#gallery{display:none}
-#grand{animation:messageReveal 1s}
-.photo-frame{
- min-height:320px;display:flex;
- align-items:center;justify-content:center
+
+.balloon-box h3 {
+    color: #ffd477;
+    margin-bottom: 8px;
+    font-size: 18px;
 }
-#photo{
- width:100%;max-width:420px;height:300px;
- object-fit:contain;border-radius:15px;background:#14040b
+
+.balloon-icon {
+    font-size: 23px;
 }
-input[type=file]{max-width:100%;margin:10px}
-input[type=range]{width:140px;vertical-align:middle}
-.status{color:#ffda8a;font-size:14px}
-footer{margin-top:35px;color:#e8b9c6}
-@media(max-width:380px){
- .balloons{gap:4px}
- .slot{min-height:155px}
- .message{padding:6px 3px}
- .message h3{font-size:11px}
- .message p{font-size:9px}
- .balloon{height:70px;font-size:19px}
+
+.preview-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.preview-grid img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 13px;
+    border: 2px solid #e9b85f;
+}
+
+.main-btn {
+    width: 100%;
+    padding: 19px;
+    border-radius: 40px;
+    background: linear-gradient(120deg,#ffda80,#e9a72e,#ffe5a5);
+    color: #510015;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border: none;
+    box-shadow: 0 0 20px rgba(255,190,65,.35);
+    margin-top: 12px;
+    cursor: pointer;
+}
+
+#result {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ffd477;
+    border-radius: 15px;
+    background: rgba(255,215,130,.08);
+    line-height: 1.8;
+}
+
+#result h2 {
+    color: #ffd477;
+    margin-bottom: 15px;
+}
+
+.result-message {
+    margin: 12px 0;
+    padding: 12px;
+    border-left: 3px solid #ffd477;
+    background: rgba(255,255,255,.05);
+    border-radius: 8px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px 10px;
+    color: #eac7bd;
+    font-size: 13px;
+}
+
+.gold {
+    color: #ffd477;
+}
+
+.small-note {
+    color: #e8bdb5;
+    font-size: 12px;
+    line-height: 1.7;
+    margin-top: 10px;
+}
+
+@media(max-width:380px) {
+    .section {
+        padding: 18px 13px;
+    }
 }
 </style>
 </head>
+
 <body>
 
-<h1>🎉 Happy Birthday 🎉</h1>
-<p>A Little Surprise, Made With Love ❤️</p>
-<div class="cake">🎂</div>
+<div class="container">
+
+<header>
+    <div class="music-icon">🎂 ✨</div>
+
+    <h1>Birthday Surprise Studio</h1>
+
+    <p>
+    Create something special for someone special.<br>
+    Every memory deserves a beautiful surprise.
+    </p>
+</header>
+
+<form id="birthdayForm">
+
+<!-- 01: PERSONAL INFORMATION -->
 
 <div class="section">
-<h2>Pop The Balloons 🎈</h2>
-<p>Tap each balloon to discover a special message!</p>
 
-<div class="balloons" id="balloons">
- <div class="slot">
-  <div class="balloon" style="background:#e84c76;color:#e84c76" onclick="pop(0)">❤️</div>
-  <div class="message" id="m0">
-   <h3>You Are Special ❤️</h3>
-   <p>Some people make ordinary moments feel extraordinary. You are one of them.</p>
-  </div>
- </div>
- <div class="slot">
-  <div class="balloon" style="background:#f2a64a;color:#f2a64a" onclick="pop(1)">🌸</div>
-  <div class="message" id="m1">
-   <h3>A Beautiful Soul 🌸</h3>
-   <p>Your kindness makes this world a little more beautiful.</p>
-  </div>
- </div>
- <div class="slot">
-  <div class="balloon" style="background:#7e9fea;color:#7e9fea" onclick="pop(2)">✨</div>
-  <div class="message" id="m2">
-   <h3>A Little Happiness 🥹</h3>
-   <p>May your life always be filled with reasons to smile.</p>
-  </div>
- </div>
- <div class="slot">
-  <div class="balloon" style="background:#a879d5;color:#a879d5" onclick="pop(3)">💜</div>
-  <div class="message" id="m3">
-   <h3>You Matter ❤️</h3>
-   <p>Never forget how precious and important you are.</p>
-  </div>
- </div>
- <div class="slot">
-  <div class="balloon" style="background:#62c6a0;color:#62c6a0" onclick="pop(4)">🥹</div>
-  <div class="message" id="m4">
-   <h3>One Last Wish ✨</h3>
-   <p>May life give you all the happiness your heart deserves.</p>
-  </div>
- </div>
+    <h2>01. Who is it for?</h2>
+
+    <p class="description">
+    Tell us who will receive this beautiful surprise.
+    </p>
+
+    <label>Birthday Person's Name</label>
+
+    <input type="text" id="personName"
+    placeholder="Enter their name" required>
+
+    <label>Your Name (Sender)</label>
+
+    <input type="text" id="senderName"
+    placeholder="Enter your name" required>
+
 </div>
 
-<div id="grand" class="section">
- <h1>✨ Grand Final Surprise ✨</h1>
- <p>Some people are not just a part of our memories; they become a beautiful part of our story. ❤️</p>
- <h2>Stay Happy, Always! 💖</h2>
-</div>
-</div>
 
-<!-- BACKGROUND MUSIC -->
+<!-- 02: FIVE SPECIAL BALLOONS -->
+
 <div class="section">
-<h2>🎵 A Little Background Music</h2>
-<p>Choose a soft instrumental audio file.</p>
-<input type="file" id="musicFile" accept="audio/*">
-<audio id="music" loop></audio>
-<div>
- <button onclick="toggleMusic()">▶ Play / Pause</button>
- <button onclick="stopMusic()">⏹ Stop</button>
-</div>
-<p>Music Volume:
-<input type="range" id="musicVolume" min="0" max="1" step="0.05" value="0.25">
-</p>
-<p class="status" id="musicStatus">No music selected</p>
+
+    <h2>02. Five Special Balloons 🎈</h2>
+
+    <p class="description">
+    Five balloons. Five beautiful messages.
+    Click each balloon on the final birthday card
+    to discover a special surprise.
+    </p>
+
+    <!-- BALLOON 1 -->
+
+    <div class="balloon-box">
+
+        <h3><span class="balloon-icon">🎈</span> Balloon 1</h3>
+
+        <label>Balloon Title</label>
+
+        <input type="text" name="title1"
+        value="You are special" required>
+
+        <label>Special Message</label>
+
+        <textarea name="message1" required>You are special — Some people make ordinary moments feel extraordinary. You are one of them. ❤️</textarea>
+
+    </div>
+
+
+    <!-- BALLOON 2 -->
+
+    <div class="balloon-box">
+
+        <h3><span class="balloon-icon">🎈</span> Balloon 2</h3>
+
+        <label>Balloon Title</label>
+
+        <input type="text" name="title2"
+        value="A Beautiful Soul" required>
+
+        <label>Special Message</label>
+
+        <textarea name="message2" required>Your kindness makes this world a little more beautiful.</textarea>
+
+    </div>
+
+
+    <!-- BALLOON 3 -->
+
+    <div class="balloon-box">
+
+        <h3><span class="balloon-icon">🎈</span> Balloon 3</h3>
+
+        <label>Balloon Title</label>
+
+        <input type="text" name="title3"
+        value="A Little Happiness" required>
+
+        <label>Special Message</label>
+
+        <textarea name="message3" required>May your life always be filled with reasons to smile.</textarea>
+
+    </div>
+
+
+    <!-- BALLOON 4 -->
+
+    <div class="balloon-box">
+
+        <h3><span class="balloon-icon">🎈</span> Balloon 4</h3>
+
+        <label>Balloon Title</label>
+
+        <input type="text" name="title4"
+        value="You Matter" required>
+
+        <label>Special Message</label>
+
+        <textarea name="message4" required>Never forget how precious and important you are.</textarea>
+
+    </div>
+
+
+    <!-- BALLOON 5 -->
+
+    <div class="balloon-box">
+
+        <h3><span class="balloon-icon">🎈</span> Balloon 5</h3>
+
+        <label>Balloon Title</label>
+
+        <input type="text" name="title5"
+        value="One Last Wish" required>
+
+        <label>Special Message</label>
+
+        <textarea name="message5" required>May life give you all the happiness your heart deserves.</textarea>
+
+    </div>
+
 </div>
 
-<!-- VOICE RECORDING -->
+
+<!-- 03: MEMORIES -->
+
 <div class="section">
-<h2>🎙️ A Personal Birthday Wish</h2>
-<p>Record your own voice and play it with soft background music.</p>
-<button onclick="startRecording()">🔴 Start Recording</button>
-<button onclick="stopRecording()">⏹ Stop Recording</button>
-<button onclick="playVoice()">▶ Play Voice + Music</button>
-<button onclick="stopVoice()">⏸ Stop Playback</button>
-<p class="status" id="recordStatus">Recording not started</p>
-<audio id="voice" controls style="width:100%;margin-top:12px"></audio>
+
+    <h2>03. Memorable Pictures 🖼️</h2>
+
+    <p class="description">
+    Upload up to 5 memorable pictures.
+    </p>
+
+    <label>Select Pictures</label>
+
+    <input type="file" id="photos"
+    accept="image/*" multiple>
+
+    <div class="preview-grid" id="photoPreview"></div>
+
+    <p class="small-note">
+    Maximum 5 pictures.
+    </p>
+
 </div>
 
-<!-- PHOTO GALLERY -->
-<div class="section" id="gallery">
-<h2>📸 Birthday Memories</h2>
-<p>Upload up to 5 special photographs.</p>
-<input type="file" id="photos" accept="image/*" multiple>
-<div class="photo-frame">
- <img id="photo" alt="Birthday memory" style="display:none">
- <p id="photoMessage">Your photos will appear here ❤️</p>
-</div>
-<p id="photoCount" class="status"></p>
-<button onclick="previousPhoto()">❮ Previous</button>
-<button onclick="nextPhoto()">Next ❯</button>
+
+<!-- 04: SURPRISE LETTER -->
+
+<div class="section">
+
+    <h2>04. Surprise Letter 💌</h2>
+
+    <label>Your Special Letter</label>
+
+    <textarea id="letter"
+    placeholder="Write something meaningful..."></textarea>
+
 </div>
 
-<footer>Made with Love ❤️ Just for You</footer>
+
+<!-- 05: MUSIC AND VOICE -->
+
+<div class="section">
+
+    <h2>05. Music & Voice 🎵</h2>
+
+    <label>Background Music</label>
+
+    <input type="file" id="music"
+    accept="audio/*">
+
+    <label>Voice Message</label>
+
+    <input type="file" id="voice"
+    accept="audio/*">
+
+    <p class="small-note">
+    Choose your favourite soft piano music
+    and personal voice recording.
+    </p>
+
+</div>
+
+
+<!-- 06: FINAL WISH -->
+
+<div class="section">
+
+    <h2>06. Final Birthday Wish 🎂</h2>
+
+    <label>Final Message</label>
+
+    <textarea id="finalWish"
+    placeholder="I hope this little surprise brought a smile to your face..."
+    required></textarea>
+
+</div>
+
+
+<!-- 07: SECRET PIN -->
+
+<div class="section">
+
+    <h2>07. Secret PIN 🔐</h2>
+
+    <p class="description">
+    Create a private PIN for the birthday person.
+    Share it separately from the card link.
+    </p>
+
+    <label>Create PIN (minimum 6 digits)</label>
+
+    <input type="password" id="pin"
+    placeholder="Enter your PIN"
+    inputmode="numeric"
+    pattern="[0-9]{6,}" required>
+
+    <label>Confirm PIN</label>
+
+    <input type="password" id="confirmPin"
+    placeholder="Confirm your PIN"
+    inputmode="numeric" required>
+
+</div>
+
+
+<button type="submit" class="main-btn">
+    CREATE MY CARD ✨
+</button>
+
+</form>
+
+
+<!-- RESULT PREVIEW -->
+
+<div id="result">
+
+    <h2>❤️ Your Card Request Preview</h2>
+
+    <p id="resultText"></p>
+
+    <div id="balloonResults"></div>
+
+    <p class="small-note">
+    This is a frontend preview only.
+    Firebase database, card generation,
+    Admin approval and unique card links
+    will be connected in upcoming stages.
+    </p>
+
+</div>
+
+
+<footer>
+
+    Made with ♡ for beautiful memories<br>
+
+    <span class="gold">
+    Birthday Surprise Studio
+    </span>
+
+</footer>
+
+</div>
+
 
 <script>
-let popped=0;
-let done=[false,false,false,false,false];
 
-function pop(index){
- if(done[index])return;
- done[index]=true;
+// IMAGE PREVIEW
 
- const slot=document.querySelectorAll(".slot")[index];
- const balloon=slot.querySelector(".balloon");
- const message=document.getElementById("m"+index);
+const photos = document.getElementById("photos");
 
- createSparkles(slot);
- balloon.classList.add("popping");
+photos.addEventListener("change", function() {
 
- setTimeout(()=>{
-  balloon.style.display="none";
-  message.style.display="block";
- },350);
+    const preview = document.getElementById("photoPreview");
 
- popped++;
- if(popped===5){
-  setTimeout(()=>{
-   document.getElementById("grand").style.display="block";
-   document.getElementById("gallery").style.display="block";
-  },1000);
- }
-}
+    preview.innerHTML = "";
 
-function createSparkles(slot){
- const symbols=["✨","⭐","💛","🌟"];
- for(let i=0;i<9;i++){
-  const s=document.createElement("span");
-  s.className="sparkle";
-  s.textContent=symbols[i%symbols.length];
-  s.style.left=(10+Math.random()*80)+"%";
-  s.style.top=(15+Math.random()*70)+"%";
-  slot.appendChild(s);
-  setTimeout(()=>s.remove(),900);
- }
-}
+    const files = Array.from(this.files);
 
-/* MUSIC */
-const music=document.getElementById("music");
-const musicFile=document.getElementById("musicFile");
-const musicVolume=document.getElementById("musicVolume");
+    if(files.length > 5) {
 
-music.volume=.25;
-musicVolume.addEventListener("input",()=>{
- music.volume=Number(musicVolume.value);
+        alert("You can select maximum 5 pictures.");
+
+        this.value = "";
+
+        return;
+    }
+
+    files.forEach(file => {
+
+        if(!file.type.startsWith("image/")) return;
+
+        const img = document.createElement("img");
+
+        const url = URL.createObjectURL(file);
+
+        img.src = url;
+
+        img.onload = () => URL.revokeObjectURL(url);
+
+        preview.appendChild(img);
+
+    });
+
 });
 
-musicFile.addEventListener("change",()=>{
- const file=musicFile.files[0];
- if(!file)return;
- music.pause();
- music.src=URL.createObjectURL(file);
- music.load();
- document.getElementById("musicStatus").textContent="Selected: "+file.name;
+
+// FORM SUBMISSION
+
+document.getElementById("birthdayForm")
+.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const pin = document.getElementById("pin").value;
+
+    const confirmPin =
+    document.getElementById("confirmPin").value;
+
+    if(pin !== confirmPin) {
+
+        alert("Your PINs do not match!");
+
+        return;
+    }
+
+    if(!/^[0-9]{6,}$/.test(pin)) {
+
+        alert("Please enter at least 6 digits.");
+
+        return;
+    }
+
+
+    const name =
+    document.getElementById("personName").value;
+
+    const sender =
+    document.getElementById("senderName").value;
+
+
+    document.getElementById("resultText").textContent =
+    "Birthday Person: " + name +
+    " | Created By: " + sender +
+    " | Pictures: " + photos.files.length;
+
+
+    // DISPLAY ALL FIVE BALLOON MESSAGES
+
+    const balloonResults =
+    document.getElementById("balloonResults");
+
+    balloonResults.innerHTML = "";
+
+    for(let i = 1; i <= 5; i++) {
+
+        const title =
+        document.querySelector('[name="title' + i + '"]').value;
+
+        const message =
+        document.querySelector('[name="message' + i + '"]').value;
+
+        const box = document.createElement("div");
+
+        box.className = "result-message";
+
+        const heading = document.createElement("h3");
+
+        heading.className = "gold";
+
+        heading.textContent = "🎈 " + title;
+
+        const paragraph = document.createElement("p");
+
+        paragraph.textContent = message;
+
+        box.appendChild(heading);
+
+        box.appendChild(paragraph);
+
+        balloonResults.appendChild(box);
+
+    }
+
+
+    document.getElementById("result").style.display = "block";
+
+    document.getElementById("result").scrollIntoView({
+        behavior: "smooth"
+    });
+
 });
 
-async function toggleMusic(){
- if(!music.src){
-  alert("Please select a music file first.");
-  return;
- }
- if(music.paused){
-  try{await music.play();}
-  catch(e){alert("Tap Play again to start music.");}
- }else music.pause();
-}
-function stopMusic(){
- music.pause();
- music.currentTime=0;
-}
-
-/* VOICE */
-let recorder=null;
-let voiceChunks=[];
-let voiceURL=null;
-
-async function startRecording(){
- if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
-  alert("Microphone requires a secure HTTPS website. Use GitHub Pages.");
-  return;
- }
- try{
-  const stream=await navigator.mediaDevices.getUserMedia({audio:true});
-  voiceChunks=[];
-  recorder=new MediaRecorder(stream);
-
-  recorder.ondataavailable=e=>{
-   if(e.data.size>0)voiceChunks.push(e.data);
-  };
-
-  recorder.onstop=()=>{
-   const blob=new Blob(voiceChunks,{type:recorder.mimeType});
-   if(voiceURL)URL.revokeObjectURL(voiceURL);
-   voiceURL=URL.createObjectURL(blob);
-   document.getElementById("voice").src=voiceURL;
-   document.getElementById("recordStatus").textContent="Recording ready! ❤️";
-   stream.getTracks().forEach(t=>t.stop());
-  };
-
-  recorder.start();
-  document.getElementById("recordStatus").textContent="Recording... 🎙️";
- }catch(e){
-  alert("Please allow microphone permission.");
- }
-}
-
-function stopRecording(){
- if(recorder && recorder.state==="recording")recorder.stop();
-}
-
-async function playVoice(){
- if(!voiceURL){
-  alert("Please record your voice first.");
-  return;
- }
- const voice=document.getElementById("voice");
- music.pause();
- music.volume=Number(musicVolume.value);
- try{
-  if(music.src)await music.play();
-  voice.currentTime=0;
-  await voice.play();
- }catch(e){
-  alert("Please try again.");
- }
-}
-
-function stopVoice(){
- const voice=document.getElementById("voice");
- voice.pause();
- voice.currentTime=0;
- music.pause();
-}
-
-/* GALLERY */
-let photoURLs=[];
-let currentPhoto=0;
-let slideTimer=null;
-
-document.getElementById("photos").addEventListener("change",function(){
- photoURLs.forEach(u=>URL.revokeObjectURL(u));
- photoURLs=[];
- clearInterval(slideTimer);
-
- const files=Array.from(this.files).filter(f=>f.type.startsWith("image/")).slice(0,5);
- const image=document.getElementById("photo");
-
- if(!files.length){
-  image.style.display="none";
-  document.getElementById("photoMessage").style.display="block";
-  return;
- }
-
- photoURLs=files.map(f=>URL.createObjectURL(f));
- currentPhoto=0;
- showPhoto();
-
- if(photoURLs.length>1){
-  slideTimer=setInterval(nextPhoto,3500);
- }
-});
-
-function showPhoto(){
- if(!photoURLs.length)return;
- const image=document.getElementById("photo");
- image.style.display="block";
- document.getElementById("photoMessage").style.display="none";
- image.style.opacity=0;
- image.style.transform="scale(.94)";
- image.src=photoURLs[currentPhoto];
-
- image.onload=()=>{
-  image.style.transition="opacity .7s, transform .7s";
-  image.style.opacity=1;
-  image.style.transform="scale(1)";
- };
-
- document.getElementById("photoCount").textContent=
- "Photo "+(currentPhoto+1)+" of "+photoURLs.length;
-}
-function nextPhoto(){
- if(!photoURLs.length)return;
- currentPhoto=(currentPhoto+1)%photoURLs.length;
- showPhoto();
-}
-function previousPhoto(){
- if(!photoURLs.length)return;
- currentPhoto=(currentPhoto-1+photoURLs.length)%photoURLs.length;
- showPhoto();
-}
 </script>
+
 </body>
 </html>
