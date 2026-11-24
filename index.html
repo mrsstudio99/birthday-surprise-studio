@@ -1,0 +1,416 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise ❤️</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;text-align:center;
+ font-family:Georgia,serif;color:white;
+ background:radial-gradient(circle at top,#68152e,#200611 75%);
+ padding:20px 12px 50px;overflow-x:hidden
+}
+h1{color:#ffd777;text-shadow:0 0 15px #ffbd45}
+h2{color:#ffda8a}
+p{line-height:1.6}
+.section{
+ max-width:600px;margin:22px auto;padding:18px;
+ background:#ffffff12;border:1px solid #ffffff30;
+ border-radius:18px
+}
+button,.upload{
+ border:0;border-radius:25px;padding:11px 17px;
+ margin:6px;background:#ffd477;color:#39101b;
+ font-weight:bold;cursor:pointer
+}
+.cake{font-size:75px;animation:bounce 2s infinite}
+@keyframes bounce{
+ 50%{transform:translateY(-10px)}
+}
+.balloons{
+ display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+ gap:8px;align-items:center;margin:30px auto;
+}
+.slot{
+ min-width:0;min-height:145px;
+ display:flex;align-items:center;justify-content:center;
+ position:relative;
+}
+.balloon{
+ width:100%;max-width:65px;height:85px;
+ border-radius:50% 50% 45% 45%;
+ display:flex;align-items:center;justify-content:center;
+ font-size:23px;cursor:pointer;position:relative;
+ animation:float 2s infinite ease-in-out;
+ box-shadow:inset -8px -8px 15px #0003;
+}
+.balloon:after{
+ content:"";position:absolute;bottom:-12px;
+ border-left:5px solid transparent;
+ border-right:5px solid transparent;
+ border-top:12px solid currentColor
+}
+@keyframes float{
+ 50%{transform:translateY(-10px)}
+}
+.balloon.popping{
+ animation:popEffect .45s forwards;
+ pointer-events:none
+}
+@keyframes popEffect{
+ 0%{transform:scale(1);opacity:1}
+ 45%{transform:scale(1.3);opacity:.9}
+ 100%{transform:scale(0);opacity:0}
+}
+.message{
+ display:none;width:100%;padding:9px 5px;
+ border-radius:13px;
+ background:linear-gradient(145deg,#5c1933,#321020);
+ border:1px solid #ffdb82;
+ box-shadow:0 0 15px #ffca60, inset 0 0 12px #ffcf7022;
+ font-size:12px;
+ animation:messageReveal .85s ease forwards;
+}
+.message h3{
+ color:#ffe19a;font-size:14px;margin:4px 0 7px;
+ text-shadow:0 0 8px #ffc65b
+}
+.message p{font-size:11px;margin:0;line-height:1.45}
+@keyframes messageReveal{
+ 0%{opacity:0;transform:scale(.2) rotate(-8deg)}
+ 60%{opacity:1;transform:scale(1.12) rotate(2deg)}
+ 100%{opacity:1;transform:scale(1) rotate(0)}
+}
+.sparkle{
+ position:absolute;pointer-events:none;
+ animation:sparkle .8s forwards;
+ font-size:18px;z-index:5
+}
+@keyframes sparkle{
+ 0%{opacity:1;transform:scale(.3) translateY(0)}
+ 100%{opacity:0;transform:scale(1.8) translateY(-35px)}
+}
+#grand,#gallery{display:none}
+#grand{animation:messageReveal 1s}
+.photo-frame{
+ min-height:320px;display:flex;
+ align-items:center;justify-content:center
+}
+#photo{
+ width:100%;max-width:420px;height:300px;
+ object-fit:contain;border-radius:15px;background:#14040b
+}
+input[type=file]{max-width:100%;margin:10px}
+input[type=range]{width:140px;vertical-align:middle}
+.status{color:#ffda8a;font-size:14px}
+footer{margin-top:35px;color:#e8b9c6}
+@media(max-width:380px){
+ .balloons{gap:4px}
+ .slot{min-height:155px}
+ .message{padding:6px 3px}
+ .message h3{font-size:11px}
+ .message p{font-size:9px}
+ .balloon{height:70px;font-size:19px}
+}
+</style>
+</head>
+<body>
+
+<h1>🎉 Happy Birthday 🎉</h1>
+<p>A Little Surprise, Made With Love ❤️</p>
+<div class="cake">🎂</div>
+
+<div class="section">
+<h2>Pop The Balloons 🎈</h2>
+<p>Tap each balloon to discover a special message!</p>
+
+<div class="balloons" id="balloons">
+ <div class="slot">
+  <div class="balloon" style="background:#e84c76;color:#e84c76" onclick="pop(0)">❤️</div>
+  <div class="message" id="m0">
+   <h3>You Are Special ❤️</h3>
+   <p>Some people make ordinary moments feel extraordinary. You are one of them.</p>
+  </div>
+ </div>
+ <div class="slot">
+  <div class="balloon" style="background:#f2a64a;color:#f2a64a" onclick="pop(1)">🌸</div>
+  <div class="message" id="m1">
+   <h3>A Beautiful Soul 🌸</h3>
+   <p>Your kindness makes this world a little more beautiful.</p>
+  </div>
+ </div>
+ <div class="slot">
+  <div class="balloon" style="background:#7e9fea;color:#7e9fea" onclick="pop(2)">✨</div>
+  <div class="message" id="m2">
+   <h3>A Little Happiness 🥹</h3>
+   <p>May your life always be filled with reasons to smile.</p>
+  </div>
+ </div>
+ <div class="slot">
+  <div class="balloon" style="background:#a879d5;color:#a879d5" onclick="pop(3)">💜</div>
+  <div class="message" id="m3">
+   <h3>You Matter ❤️</h3>
+   <p>Never forget how precious and important you are.</p>
+  </div>
+ </div>
+ <div class="slot">
+  <div class="balloon" style="background:#62c6a0;color:#62c6a0" onclick="pop(4)">🥹</div>
+  <div class="message" id="m4">
+   <h3>One Last Wish ✨</h3>
+   <p>May life give you all the happiness your heart deserves.</p>
+  </div>
+ </div>
+</div>
+
+<div id="grand" class="section">
+ <h1>✨ Grand Final Surprise ✨</h1>
+ <p>Some people are not just a part of our memories; they become a beautiful part of our story. ❤️</p>
+ <h2>Stay Happy, Always! 💖</h2>
+</div>
+</div>
+
+<!-- BACKGROUND MUSIC -->
+<div class="section">
+<h2>🎵 A Little Background Music</h2>
+<p>Choose a soft instrumental audio file.</p>
+<input type="file" id="musicFile" accept="audio/*">
+<audio id="music" loop></audio>
+<div>
+ <button onclick="toggleMusic()">▶ Play / Pause</button>
+ <button onclick="stopMusic()">⏹ Stop</button>
+</div>
+<p>Music Volume:
+<input type="range" id="musicVolume" min="0" max="1" step="0.05" value="0.25">
+</p>
+<p class="status" id="musicStatus">No music selected</p>
+</div>
+
+<!-- VOICE RECORDING -->
+<div class="section">
+<h2>🎙️ A Personal Birthday Wish</h2>
+<p>Record your own voice and play it with soft background music.</p>
+<button onclick="startRecording()">🔴 Start Recording</button>
+<button onclick="stopRecording()">⏹ Stop Recording</button>
+<button onclick="playVoice()">▶ Play Voice + Music</button>
+<button onclick="stopVoice()">⏸ Stop Playback</button>
+<p class="status" id="recordStatus">Recording not started</p>
+<audio id="voice" controls style="width:100%;margin-top:12px"></audio>
+</div>
+
+<!-- PHOTO GALLERY -->
+<div class="section" id="gallery">
+<h2>📸 Birthday Memories</h2>
+<p>Upload up to 5 special photographs.</p>
+<input type="file" id="photos" accept="image/*" multiple>
+<div class="photo-frame">
+ <img id="photo" alt="Birthday memory" style="display:none">
+ <p id="photoMessage">Your photos will appear here ❤️</p>
+</div>
+<p id="photoCount" class="status"></p>
+<button onclick="previousPhoto()">❮ Previous</button>
+<button onclick="nextPhoto()">Next ❯</button>
+</div>
+
+<footer>Made with Love ❤️ Just for You</footer>
+
+<script>
+let popped=0;
+let done=[false,false,false,false,false];
+
+function pop(index){
+ if(done[index])return;
+ done[index]=true;
+
+ const slot=document.querySelectorAll(".slot")[index];
+ const balloon=slot.querySelector(".balloon");
+ const message=document.getElementById("m"+index);
+
+ createSparkles(slot);
+ balloon.classList.add("popping");
+
+ setTimeout(()=>{
+  balloon.style.display="none";
+  message.style.display="block";
+ },350);
+
+ popped++;
+ if(popped===5){
+  setTimeout(()=>{
+   document.getElementById("grand").style.display="block";
+   document.getElementById("gallery").style.display="block";
+  },1000);
+ }
+}
+
+function createSparkles(slot){
+ const symbols=["✨","⭐","💛","🌟"];
+ for(let i=0;i<9;i++){
+  const s=document.createElement("span");
+  s.className="sparkle";
+  s.textContent=symbols[i%symbols.length];
+  s.style.left=(10+Math.random()*80)+"%";
+  s.style.top=(15+Math.random()*70)+"%";
+  slot.appendChild(s);
+  setTimeout(()=>s.remove(),900);
+ }
+}
+
+/* MUSIC */
+const music=document.getElementById("music");
+const musicFile=document.getElementById("musicFile");
+const musicVolume=document.getElementById("musicVolume");
+
+music.volume=.25;
+musicVolume.addEventListener("input",()=>{
+ music.volume=Number(musicVolume.value);
+});
+
+musicFile.addEventListener("change",()=>{
+ const file=musicFile.files[0];
+ if(!file)return;
+ music.pause();
+ music.src=URL.createObjectURL(file);
+ music.load();
+ document.getElementById("musicStatus").textContent="Selected: "+file.name;
+});
+
+async function toggleMusic(){
+ if(!music.src){
+  alert("Please select a music file first.");
+  return;
+ }
+ if(music.paused){
+  try{await music.play();}
+  catch(e){alert("Tap Play again to start music.");}
+ }else music.pause();
+}
+function stopMusic(){
+ music.pause();
+ music.currentTime=0;
+}
+
+/* VOICE */
+let recorder=null;
+let voiceChunks=[];
+let voiceURL=null;
+
+async function startRecording(){
+ if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+  alert("Microphone requires a secure HTTPS website. Use GitHub Pages.");
+  return;
+ }
+ try{
+  const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+  voiceChunks=[];
+  recorder=new MediaRecorder(stream);
+
+  recorder.ondataavailable=e=>{
+   if(e.data.size>0)voiceChunks.push(e.data);
+  };
+
+  recorder.onstop=()=>{
+   const blob=new Blob(voiceChunks,{type:recorder.mimeType});
+   if(voiceURL)URL.revokeObjectURL(voiceURL);
+   voiceURL=URL.createObjectURL(blob);
+   document.getElementById("voice").src=voiceURL;
+   document.getElementById("recordStatus").textContent="Recording ready! ❤️";
+   stream.getTracks().forEach(t=>t.stop());
+  };
+
+  recorder.start();
+  document.getElementById("recordStatus").textContent="Recording... 🎙️";
+ }catch(e){
+  alert("Please allow microphone permission.");
+ }
+}
+
+function stopRecording(){
+ if(recorder && recorder.state==="recording")recorder.stop();
+}
+
+async function playVoice(){
+ if(!voiceURL){
+  alert("Please record your voice first.");
+  return;
+ }
+ const voice=document.getElementById("voice");
+ music.pause();
+ music.volume=Number(musicVolume.value);
+ try{
+  if(music.src)await music.play();
+  voice.currentTime=0;
+  await voice.play();
+ }catch(e){
+  alert("Please try again.");
+ }
+}
+
+function stopVoice(){
+ const voice=document.getElementById("voice");
+ voice.pause();
+ voice.currentTime=0;
+ music.pause();
+}
+
+/* GALLERY */
+let photoURLs=[];
+let currentPhoto=0;
+let slideTimer=null;
+
+document.getElementById("photos").addEventListener("change",function(){
+ photoURLs.forEach(u=>URL.revokeObjectURL(u));
+ photoURLs=[];
+ clearInterval(slideTimer);
+
+ const files=Array.from(this.files).filter(f=>f.type.startsWith("image/")).slice(0,5);
+ const image=document.getElementById("photo");
+
+ if(!files.length){
+  image.style.display="none";
+  document.getElementById("photoMessage").style.display="block";
+  return;
+ }
+
+ photoURLs=files.map(f=>URL.createObjectURL(f));
+ currentPhoto=0;
+ showPhoto();
+
+ if(photoURLs.length>1){
+  slideTimer=setInterval(nextPhoto,3500);
+ }
+});
+
+function showPhoto(){
+ if(!photoURLs.length)return;
+ const image=document.getElementById("photo");
+ image.style.display="block";
+ document.getElementById("photoMessage").style.display="none";
+ image.style.opacity=0;
+ image.style.transform="scale(.94)";
+ image.src=photoURLs[currentPhoto];
+
+ image.onload=()=>{
+  image.style.transition="opacity .7s, transform .7s";
+  image.style.opacity=1;
+  image.style.transform="scale(1)";
+ };
+
+ document.getElementById("photoCount").textContent=
+ "Photo "+(currentPhoto+1)+" of "+photoURLs.length;
+}
+function nextPhoto(){
+ if(!photoURLs.length)return;
+ currentPhoto=(currentPhoto+1)%photoURLs.length;
+ showPhoto();
+}
+function previousPhoto(){
+ if(!photoURLs.length)return;
+ currentPhoto=(currentPhoto-1+photoURLs.length)%photoURLs.length;
+ showPhoto();
+}
+</script>
+</body>
+</html>
