@@ -7,618 +7,551 @@
 <title>Birthday Surprise Studio</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:Georgia,serif;
+background:#41000f;color:#fff2df;
+min-height:100vh;padding:22px 14px;
+background-image:
+radial-gradient(circle at 50% 20%,#a90030,transparent 55%),
+linear-gradient(140deg,#33000b,#790018,#3c000d);
 }
 
-body {
-    font-family: Georgia, serif;
-    background: #41000f;
-    color: #fff2df;
-    min-height: 100vh;
-    padding: 22px 14px;
-    background-image:
-    radial-gradient(circle at 50% 20%,#a90030,transparent 55%),
-    linear-gradient(140deg,#33000b,#790018,#3c000d);
+.container{max-width:650px;margin:auto}
+header{text-align:center;padding:35px 10px}
+header h1{font-size:clamp(30px,7vw,43px);color:#ffd477;
+text-shadow:0 0 15px #ffb52e;margin-bottom:15px}
+header p{color:#ffe1d5;font-size:15px;line-height:1.8}
+.music-icon{font-size:32px;margin-bottom:12px}
+
+.section{
+background:rgba(255,255,255,.045);
+border:1px solid rgba(255,213,135,.35);
+border-radius:23px;padding:23px 19px;
+margin-bottom:23px;
+box-shadow:0 8px 30px rgba(0,0,0,.18);
 }
 
-.container {
-    max-width: 650px;
-    margin: auto;
+.section h2{color:#ffd477;font-size:23px;margin-bottom:18px}
+.description{color:#f5d4ca;line-height:1.7;margin-bottom:18px;font-size:14px}
+
+label{display:block;margin:16px 0 9px;color:#ffe5c4}
+
+input,textarea{
+width:100%;padding:16px;border-radius:15px;
+border:1px solid #f6d3a3;background:#fff7ed;
+color:#42101c;font-size:15px;outline:none;
+font-family:Arial,sans-serif;
 }
 
-header {
-    text-align: center;
-    padding: 35px 10px;
+textarea{min-height:115px;resize:vertical;line-height:1.6}
+input[type=file]{padding:12px;font-size:13px}
+
+input:focus,textarea:focus{
+border:2px solid #ffd477;
+box-shadow:0 0 10px #e9a83b;
 }
 
-header h1 {
-    font-size: clamp(30px,7vw,43px);
-    color: #ffd477;
-    text-shadow: 0 0 15px #ffb52e;
-    margin-bottom: 15px;
+.balloon-box{
+border:1px solid rgba(255,215,130,.3);
+padding:16px;border-radius:16px;
+margin-bottom:17px;background:rgba(90,0,20,.25);
 }
 
-header p {
-    color: #ffe1d5;
-    font-size: 15px;
-    line-height: 1.8;
+.balloon-box h3{color:#ffd477;margin-bottom:8px}
+.balloon-icon{font-size:23px}
+
+.preview-grid{
+display:grid;grid-template-columns:repeat(2,1fr);
+gap:10px;margin-top:15px;
 }
 
-.music-icon {
-    font-size: 32px;
-    margin-bottom: 12px;
+.preview-grid img{
+width:100%;height:150px;object-fit:cover;
+border-radius:13px;border:2px solid #e9b85f;
 }
 
-.section {
-    background: rgba(255,255,255,.045);
-    border: 1px solid rgba(255,213,135,.35);
-    border-radius: 23px;
-    padding: 23px 19px;
-    margin-bottom: 23px;
-    box-shadow: 0 8px 30px rgba(0,0,0,.18);
+.main-btn{
+width:100%;padding:19px;border-radius:40px;
+background:linear-gradient(120deg,#ffda80,#e9a72e,#ffe5a5);
+color:#510015;font-size:17px;font-weight:bold;
+letter-spacing:1px;border:none;
+box-shadow:0 0 20px rgba(255,190,65,.35);
+margin-top:12px;cursor:pointer;
 }
 
-.section h2 {
-    color: #ffd477;
-    font-size: 23px;
-    margin-bottom: 18px;
+#result{
+display:none;margin-top:20px;padding:20px;
+border:1px solid #ffd477;border-radius:15px;
+background:rgba(255,215,130,.08);line-height:1.8;
 }
 
-.description {
-    color: #f5d4ca;
-    line-height: 1.7;
-    margin-bottom: 18px;
-    font-size: 14px;
+#result h2{color:#ffd477;margin-bottom:15px}
+.result-message{
+margin:12px 0;padding:12px;
+border-left:3px solid #ffd477;
+background:rgba(255,255,255,.05);border-radius:8px;
 }
 
-label {
-    display: block;
-    margin: 16px 0 9px;
-    font-size: 15px;
-    color: #ffe5c4;
+footer{text-align:center;padding:25px 10px;color:#eac7bd;font-size:13px}
+.gold{color:#ffd477}
+.small-note{color:#e8bdb5;font-size:12px;line-height:1.7;margin-top:10px}
+
+#loginStatus,#saveStatus{
+margin-top:14px;padding:12px;border-radius:10px;
+font-size:14px;line-height:1.6;overflow-wrap:anywhere;
 }
 
-input, textarea {
-    width: 100%;
-    padding: 16px;
-    border-radius: 15px;
-    border: 1px solid #f6d3a3;
-    background: #fff7ed;
-    color: #42101c;
-    font-size: 15px;
-    outline: none;
-    font-family: Arial,sans-serif;
-}
+.success{background:#174d31;color:#d5ffe5}
+.error{background:#671b25;color:#ffe0e0}
 
-textarea {
-    min-height: 115px;
-    resize: vertical;
-    line-height: 1.6;
-}
+.hidden{display:none!important}
 
-input:focus,textarea:focus {
-    border: 2px solid #ffd477;
-    box-shadow: 0 0 10px #e9a83b;
-}
-
-input[type="file"] {
-    padding: 12px;
-    font-size: 13px;
-}
-
-.balloon-box {
-    border: 1px solid rgba(255,215,130,.3);
-    padding: 16px;
-    border-radius: 16px;
-    margin-bottom: 17px;
-    background: rgba(90,0,20,.25);
-}
-
-.balloon-box h3 {
-    color: #ffd477;
-    margin-bottom: 8px;
-    font-size: 18px;
-}
-
-.balloon-icon {
-    font-size: 23px;
-}
-
-.preview-grid {
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.preview-grid img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 13px;
-    border: 2px solid #e9b85f;
-}
-
-.main-btn {
-    width: 100%;
-    padding: 19px;
-    border-radius: 40px;
-    background: linear-gradient(120deg,#ffda80,#e9a72e,#ffe5a5);
-    color: #510015;
-    font-size: 17px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    border: none;
-    box-shadow: 0 0 20px rgba(255,190,65,.35);
-    margin-top: 12px;
-    cursor: pointer;
-}
-
-#result {
-    display: none;
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid #ffd477;
-    border-radius: 15px;
-    background: rgba(255,215,130,.08);
-    line-height: 1.8;
-}
-
-#result h2 {
-    color: #ffd477;
-    margin-bottom: 15px;
-}
-
-.result-message {
-    margin: 12px 0;
-    padding: 12px;
-    border-left: 3px solid #ffd477;
-    background: rgba(255,255,255,.05);
-    border-radius: 8px;
-}
-
-footer {
-    text-align: center;
-    padding: 25px 10px;
-    color: #eac7bd;
-    font-size: 13px;
-}
-
-.gold {
-    color: #ffd477;
-}
-
-.small-note {
-    color: #e8bdb5;
-    font-size: 12px;
-    line-height: 1.7;
-    margin-top: 10px;
-}
-
-@media(max-width:380px) {
-    .section {
-        padding: 18px 13px;
-    }
+@media(max-width:380px){
+.section{padding:18px 13px}
 }
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
 <header>
-    <div class="music-icon">🎂 ✨</div>
-
-    <h1>Birthday Surprise Studio</h1>
-
-    <p>
-    Create something special for someone special.<br>
-    Every memory deserves a beautiful surprise.
-    </p>
+<div class="music-icon">🎂 ✨</div>
+<h1>Birthday Surprise Studio</h1>
+<p>
+Create something special for someone special.<br>
+Every memory deserves a beautiful surprise.
+</p>
 </header>
 
-<form id="birthdayForm">
+<!-- ADMIN LOGIN -->
 
-<!-- 01: PERSONAL INFORMATION -->
+<div class="section" id="loginSection">
+<h2>🔐 Admin Login</h2>
+<p class="description">
+Login with your existing Firebase Admin account to create a birthday card.
+</p>
 
-<div class="section">
+<label>Admin Email</label>
+<input type="email" id="adminEmail" placeholder="Enter admin email">
 
-    <h2>01. Who is it for?</h2>
+<label>Password</label>
+<input type="password" id="adminPassword" placeholder="Enter password">
 
-    <p class="description">
-    Tell us who will receive this beautiful surprise.
-    </p>
+<button class="main-btn" id="loginBtn" type="button">
+LOGIN
+</button>
 
-    <label>Birthday Person's Name</label>
-
-    <input type="text" id="personName"
-    placeholder="Enter their name" required>
-
-    <label>Your Name (Sender)</label>
-
-    <input type="text" id="senderName"
-    placeholder="Enter your name" required>
-
+<div id="loginStatus"></div>
 </div>
 
+<!-- BIRTHDAY FORM -->
 
-<!-- 02: FIVE SPECIAL BALLOONS -->
-
-<div class="section">
-
-    <h2>02. Five Special Balloons 🎈</h2>
-
-    <p class="description">
-    Five balloons. Five beautiful messages.
-    Click each balloon on the final birthday card
-    to discover a special surprise.
-    </p>
-
-    <!-- BALLOON 1 -->
-
-    <div class="balloon-box">
-
-        <h3><span class="balloon-icon">🎈</span> Balloon 1</h3>
-
-        <label>Balloon Title</label>
-
-        <input type="text" name="title1"
-        value="You are special" required>
-
-        <label>Special Message</label>
-
-        <textarea name="message1" required>You are special — Some people make ordinary moments feel extraordinary. You are one of them. ❤️</textarea>
-
-    </div>
-
-
-    <!-- BALLOON 2 -->
-
-    <div class="balloon-box">
-
-        <h3><span class="balloon-icon">🎈</span> Balloon 2</h3>
-
-        <label>Balloon Title</label>
-
-        <input type="text" name="title2"
-        value="A Beautiful Soul" required>
-
-        <label>Special Message</label>
-
-        <textarea name="message2" required>Your kindness makes this world a little more beautiful.</textarea>
-
-    </div>
-
-
-    <!-- BALLOON 3 -->
-
-    <div class="balloon-box">
-
-        <h3><span class="balloon-icon">🎈</span> Balloon 3</h3>
-
-        <label>Balloon Title</label>
-
-        <input type="text" name="title3"
-        value="A Little Happiness" required>
-
-        <label>Special Message</label>
-
-        <textarea name="message3" required>May your life always be filled with reasons to smile.</textarea>
-
-    </div>
-
-
-    <!-- BALLOON 4 -->
-
-    <div class="balloon-box">
-
-        <h3><span class="balloon-icon">🎈</span> Balloon 4</h3>
-
-        <label>Balloon Title</label>
-
-        <input type="text" name="title4"
-        value="You Matter" required>
-
-        <label>Special Message</label>
-
-        <textarea name="message4" required>Never forget how precious and important you are.</textarea>
-
-    </div>
-
-
-    <!-- BALLOON 5 -->
-
-    <div class="balloon-box">
-
-        <h3><span class="balloon-icon">🎈</span> Balloon 5</h3>
-
-        <label>Balloon Title</label>
-
-        <input type="text" name="title5"
-        value="One Last Wish" required>
-
-        <label>Special Message</label>
-
-        <textarea name="message5" required>May life give you all the happiness your heart deserves.</textarea>
-
-    </div>
-
-</div>
-
-
-<!-- 03: MEMORIES -->
+<form id="birthdayForm" class="hidden">
 
 <div class="section">
+<h2>01. Who is it for?</h2>
+<p class="description">Tell us who will receive this beautiful surprise.</p>
 
-    <h2>03. Memorable Pictures 🖼️</h2>
+<label>Birthday Person's Name</label>
+<input type="text" id="personName" placeholder="Enter their name" required>
 
-    <p class="description">
-    Upload up to 5 memorable pictures.
-    </p>
-
-    <label>Select Pictures</label>
-
-    <input type="file" id="photos"
-    accept="image/*" multiple>
-
-    <div class="preview-grid" id="photoPreview"></div>
-
-    <p class="small-note">
-    Maximum 5 pictures.
-    </p>
-
+<label>Your Name (Sender)</label>
+<input type="text" id="senderName" placeholder="Enter your name" required>
 </div>
-
-
-<!-- 04: SURPRISE LETTER -->
 
 <div class="section">
+<h2>02. Five Special Balloons 🎈</h2>
+<p class="description">
+Five balloons. Five beautiful messages.
+Each balloon will reveal a special surprise in the final card.
+</p>
 
-    <h2>04. Surprise Letter 💌</h2>
-
-    <label>Your Special Letter</label>
-
-    <textarea id="letter"
-    placeholder="Write something meaningful..."></textarea>
-
+<div id="balloonFields"></div>
 </div>
-
-
-<!-- 05: MUSIC AND VOICE -->
 
 <div class="section">
+<h2>03. Memorable Pictures 🖼️</h2>
+<p class="description">Upload up to 5 memorable pictures.</p>
 
-    <h2>05. Music & Voice 🎵</h2>
+<label>Select Pictures</label>
+<input type="file" id="photos" accept="image/*" multiple>
+<div class="preview-grid" id="photoPreview"></div>
 
-    <label>Background Music</label>
-
-    <input type="file" id="music"
-    accept="audio/*">
-
-    <label>Voice Message</label>
-
-    <input type="file" id="voice"
-    accept="audio/*">
-
-    <p class="small-note">
-    Choose your favourite soft piano music
-    and personal voice recording.
-    </p>
-
+<p class="small-note">
+Maximum 5 pictures. Cloud upload will be added after Storage setup.
+</p>
 </div>
-
-
-<!-- 06: FINAL WISH -->
 
 <div class="section">
-
-    <h2>06. Final Birthday Wish 🎂</h2>
-
-    <label>Final Message</label>
-
-    <textarea id="finalWish"
-    placeholder="I hope this little surprise brought a smile to your face..."
-    required></textarea>
-
+<h2>04. Surprise Letter 💌</h2>
+<label>Your Special Letter</label>
+<textarea id="letter" placeholder="Write something meaningful..."></textarea>
 </div>
-
-
-<!-- 07: SECRET PIN -->
 
 <div class="section">
+<h2>05. Music & Voice 🎵</h2>
 
-    <h2>07. Secret PIN 🔐</h2>
+<label>Background Music</label>
+<input type="file" id="music" accept="audio/*">
 
-    <p class="description">
-    Create a private PIN for the birthday person.
-    Share it separately from the card link.
-    </p>
+<label>Voice Message</label>
+<input type="file" id="voice" accept="audio/*">
 
-    <label>Create PIN (minimum 6 digits)</label>
-
-    <input type="password" id="pin"
-    placeholder="Enter your PIN"
-    inputmode="numeric"
-    pattern="[0-9]{6,}" required>
-
-    <label>Confirm PIN</label>
-
-    <input type="password" id="confirmPin"
-    placeholder="Confirm your PIN"
-    inputmode="numeric" required>
-
+<p class="small-note">
+Audio files are selected locally. Cloud upload is not enabled yet.
+</p>
 </div>
 
+<div class="section">
+<h2>06. Final Birthday Wish 🎂</h2>
+<label>Final Message</label>
+<textarea id="finalWish" placeholder="Write your final birthday wish..." required></textarea>
+</div>
 
-<button type="submit" class="main-btn">
-    CREATE MY CARD ✨
+<button type="submit" class="main-btn" id="createBtn">
+SAVE BIRTHDAY REQUEST ✨
 </button>
 
 </form>
 
-
-<!-- RESULT PREVIEW -->
-
-<div id="result">
-
-    <h2>❤️ Your Card Request Preview</h2>
-
-    <p id="resultText"></p>
-
-    <div id="balloonResults"></div>
-
-    <p class="small-note">
-    This is a frontend preview only.
-    Firebase database, card generation,
-    Admin approval and unique card links
-    will be connected in upcoming stages.
-    </p>
-
+<div class="section hidden" id="logoutSection">
+<button class="main-btn" id="logoutBtn" type="button">LOG OUT</button>
 </div>
 
+<div id="saveStatus"></div>
+
+<div id="result">
+<h2>❤️ Birthday Request Saved!</h2>
+<p id="resultText"></p>
+<div id="balloonResults"></div>
+<p class="small-note">
+Your birthday information has been saved in Firebase Firestore.
+The actual birthday card and unique sharing link will be created in a later step.
+</p>
+</div>
 
 <footer>
-
-    Made with ♡ for beautiful memories<br>
-
-    <span class="gold">
-    Birthday Surprise Studio
-    </span>
-
+Made with ♡ for beautiful memories<br>
+<span class="gold">Birthday Surprise Studio</span>
 </footer>
 
 </div>
 
+<!-- FIREBASE CONNECTION -->
 
-<script>
+<script type="module">
 
-// IMAGE PREVIEW
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
 
-const photos = document.getElementById("photos");
+import {
+getAuth,
+signInWithEmailAndPassword,
+onAuthStateChanged,
+signOut
+}
+from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
-photos.addEventListener("change", function() {
+import {
+getFirestore,
+collection,
+addDoc,
+serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
-    const preview = document.getElementById("photoPreview");
+const firebaseConfig = {
+apiKey: "AIzaSyDo2xeGSWv5kDiL1o1HdmMBcbERU1hnoOU",
+authDomain: "birthday-surprise-studio.firebaseapp.com",
+projectId: "birthday-surprise-studio",
+storageBucket: "birthday-surprise-studio.firebasestorage.app",
+messagingSenderId: "240416245806",
+appId: "1:240416245806:web:5ba4d6db068f7a423a77bf",
+measurementId: "G-2Q4CXMX6X8"
+};
 
-    preview.innerHTML = "";
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-    const files = Array.from(this.files);
+// ELEMENTS
 
-    if(files.length > 5) {
+const loginSection = document.getElementById("loginSection");
+const birthdayForm = document.getElementById("birthdayForm");
+const logoutSection = document.getElementById("logoutSection");
 
-        alert("You can select maximum 5 pictures.");
+const loginStatus = document.getElementById("loginStatus");
+const saveStatus = document.getElementById("saveStatus");
 
-        this.value = "";
+const createBtn = document.getElementById("createBtn");
 
-        return;
-    }
+// FIVE BALLOON FIELDS
 
-    files.forEach(file => {
+const defaultTitles = [
+"You are special",
+"A Beautiful Soul",
+"A Little Happiness",
+"You Matter",
+"One Last Wish"
+];
 
-        if(!file.type.startsWith("image/")) return;
+const defaultMessages = [
+"You are special — Some people make ordinary moments feel extraordinary. You are one of them. ❤️",
+"Your kindness makes this world a little more beautiful.",
+"May your life always be filled with reasons to smile.",
+"Never forget how precious and important you are.",
+"May life give you all the happiness your heart deserves."
+];
 
-        const img = document.createElement("img");
+const balloonFields = document.getElementById("balloonFields");
 
-        const url = URL.createObjectURL(file);
+for(let i=0;i<5;i++){
 
-        img.src = url;
+const box=document.createElement("div");
+box.className="balloon-box";
 
-        img.onload = () => URL.revokeObjectURL(url);
+box.innerHTML=`
+<h3>🎈 Balloon ${i+1}</h3>
+<label>Balloon Title</label>
+<input type="text" name="title${i+1}" required>
+<label>Special Message</label>
+<textarea name="message${i+1}" required></textarea>
+`;
 
-        preview.appendChild(img);
+balloonFields.appendChild(box);
 
-    });
+box.querySelector("input").value=defaultTitles[i];
+box.querySelector("textarea").value=defaultMessages[i];
+
+}
+
+// AUTHENTICATION
+
+document.getElementById("loginBtn").addEventListener("click",async()=>{
+
+const email=document.getElementById("adminEmail").value.trim();
+const password=document.getElementById("adminPassword").value;
+
+loginStatus.className="";
+loginStatus.textContent="Checking login...";
+
+if(!email || !password){
+loginStatus.className="error";
+loginStatus.textContent="Please enter your email and password.";
+return;
+}
+
+try{
+
+await signInWithEmailAndPassword(auth,email,password);
+
+loginStatus.className="success";
+loginStatus.textContent="Login successful!";
+
+}catch(error){
+
+loginStatus.className="error";
+loginStatus.textContent="Login failed: "+error.message;
+
+}
 
 });
 
+// LOGIN STATE
 
-// FORM SUBMISSION
+onAuthStateChanged(auth,(user)=>{
 
-document.getElementById("birthdayForm")
-.addEventListener("submit", function(e) {
+if(user){
 
-    e.preventDefault();
+loginSection.classList.add("hidden");
+birthdayForm.classList.remove("hidden");
+logoutSection.classList.remove("hidden");
 
-    const pin = document.getElementById("pin").value;
+}else{
 
-    const confirmPin =
-    document.getElementById("confirmPin").value;
+loginSection.classList.remove("hidden");
+birthdayForm.classList.add("hidden");
+logoutSection.classList.add("hidden");
 
-    if(pin !== confirmPin) {
+}
 
-        alert("Your PINs do not match!");
+});
 
-        return;
-    }
+// LOGOUT
 
-    if(!/^[0-9]{6,}$/.test(pin)) {
+document.getElementById("logoutBtn").addEventListener("click",async()=>{
 
-        alert("Please enter at least 6 digits.");
+try{
+await signOut(auth);
+saveStatus.className="success";
+saveStatus.textContent="Logged out successfully.";
+}catch(error){
+saveStatus.className="error";
+saveStatus.textContent=error.message;
+}
 
-        return;
-    }
+});
 
+// PHOTO PREVIEW
 
-    const name =
-    document.getElementById("personName").value;
+const photos=document.getElementById("photos");
 
-    const sender =
-    document.getElementById("senderName").value;
+photos.addEventListener("change",function(){
 
+const preview=document.getElementById("photoPreview");
+preview.innerHTML="";
 
-    document.getElementById("resultText").textContent =
-    "Birthday Person: " + name +
-    " | Created By: " + sender +
-    " | Pictures: " + photos.files.length;
+const files=Array.from(this.files);
 
+if(files.length>5){
+alert("You can select maximum 5 pictures.");
+this.value="";
+return;
+}
 
-    // DISPLAY ALL FIVE BALLOON MESSAGES
+files.forEach(file=>{
 
-    const balloonResults =
-    document.getElementById("balloonResults");
+if(!file.type.startsWith("image/"))return;
 
-    balloonResults.innerHTML = "";
+const img=document.createElement("img");
+const url=URL.createObjectURL(file);
 
-    for(let i = 1; i <= 5; i++) {
+img.src=url;
+img.onload=()=>URL.revokeObjectURL(url);
 
-        const title =
-        document.querySelector('[name="title' + i + '"]').value;
+preview.appendChild(img);
 
-        const message =
-        document.querySelector('[name="message' + i + '"]').value;
+});
 
-        const box = document.createElement("div");
+});
 
-        box.className = "result-message";
+// SAVE BIRTHDAY DATA
 
-        const heading = document.createElement("h3");
+birthdayForm.addEventListener("submit",async(e)=>{
 
-        heading.className = "gold";
+e.preventDefault();
 
-        heading.textContent = "🎈 " + title;
+const user=auth.currentUser;
 
-        const paragraph = document.createElement("p");
+if(!user){
+alert("Please login first.");
+return;
+}
 
-        paragraph.textContent = message;
+const name=document.getElementById("personName").value.trim();
+const sender=document.getElementById("senderName").value.trim();
 
-        box.appendChild(heading);
+const photoFiles=Array.from(photos.files);
+const musicFile=document.getElementById("music").files[0];
+const voiceFile=document.getElementById("voice").files[0];
 
-        box.appendChild(paragraph);
+if(photoFiles.length>5){
+alert("Maximum 5 pictures allowed.");
+return;
+}
 
-        balloonResults.appendChild(box);
+if(photoFiles.some(file=>!file.type.startsWith("image/"))){
+alert("Please select valid image files.");
+return;
+}
 
-    }
+const balloons=[];
 
+for(let i=1;i<=5;i++){
 
-    document.getElementById("result").style.display = "block";
+balloons.push({
+title:document.querySelector(`[name="title${i}"]`).value.trim(),
+message:document.querySelector(`[name="message${i}"]`).value.trim()
+});
 
-    document.getElementById("result").scrollIntoView({
-        behavior: "smooth"
-    });
+}
+
+const data={
+
+personName:name,
+senderName:sender,
+
+balloons:balloons,
+
+letter:document.getElementById("letter").value.trim(),
+
+finalWish:document.getElementById("finalWish").value.trim(),
+
+photoCount:photoFiles.length,
+musicSelected:!!musicFile,
+voiceSelected:!!voiceFile,
+
+status:"pending",
+createdBy:user.uid,
+createdAt:serverTimestamp()
+
+};
+
+createBtn.disabled=true;
+createBtn.textContent="SAVING...";
+
+saveStatus.className="";
+saveStatus.textContent="Saving your birthday request to Firebase...";
+
+try{
+
+const docRef=await addDoc(
+collection(db,"birthdayRequests"),
+data
+);
+
+saveStatus.className="success";
+saveStatus.textContent="Your birthday request was saved successfully!";
+
+document.getElementById("resultText").textContent=
+"Birthday Person: "+name+
+" | Created By: "+sender+
+" | Pictures Selected: "+photoFiles.length+
+" | Request ID: "+docRef.id;
+
+const balloonResults=document.getElementById("balloonResults");
+balloonResults.innerHTML="";
+
+balloons.forEach((item,index)=>{
+
+const box=document.createElement("div");
+box.className="result-message";
+
+const heading=document.createElement("h3");
+heading.className="gold";
+heading.textContent="🎈 "+item.title;
+
+const paragraph=document.createElement("p");
+paragraph.textContent=item.message;
+
+box.appendChild(heading);
+box.appendChild(paragraph);
+balloonResults.appendChild(box);
+
+});
+
+document.getElementById("result").style.display="block";
+
+document.getElementById("result").scrollIntoView({
+behavior:"smooth"
+});
+
+}catch(error){
+
+console.error(error);
+
+saveStatus.className="error";
+saveStatus.textContent="Save failed: "+error.message;
+
+}finally{
+
+createBtn.disabled=false;
+createBtn.textContent="SAVE BIRTHDAY REQUEST ✨";
+
+}
 
 });
 
